@@ -13,18 +13,18 @@ import (
 	"fmt"
 	"os"
 
-	store "github.com/blevesearch/upsidedown_store_api"
 	"github.com/blevesearch/bleve/v2/registry"
-	"github.com/tecbot/gorocksdb"
+	store "github.com/blevesearch/upsidedown_store_api"
+	"github.com/nick13jaremek/grocksdb"
 )
 
 const Name = "rocksdb"
 
 type Store struct {
 	path   string
-	opts   *gorocksdb.Options
+	opts   *grocksdb.Options
 	config map[string]interface{}
-	db     *gorocksdb.DB
+	db     *grocksdb.DB
 
 	roptVerifyChecksums    bool
 	roptVerifyChecksumsUse bool
@@ -52,7 +52,7 @@ func New(mo store.MergeOperator, config map[string]interface{}) (store.KVStore, 
 	rv := Store{
 		path:   path,
 		config: config,
-		opts:   gorocksdb.NewDefaultOptions(),
+		opts:   grocksdb.NewDefaultOptions(),
 	}
 
 	if mo != nil {
@@ -66,9 +66,9 @@ func New(mo store.MergeOperator, config map[string]interface{}) (store.KVStore, 
 
 	b, ok := config["read_only"].(bool)
 	if ok && b {
-		rv.db, err = gorocksdb.OpenDbForReadOnly(rv.opts, rv.path, false)
+		rv.db, err = grocksdb.OpenDbForReadOnly(rv.opts, rv.path, false)
 	} else {
-		rv.db, err = gorocksdb.OpenDb(rv.opts, rv.path)
+		rv.db, err = grocksdb.OpenDb(rv.opts, rv.path)
 	}
 
 	if err != nil {
@@ -133,7 +133,7 @@ func (s *Store) Writer() (store.KVWriter, error) {
 }
 
 func (s *Store) Compact() error {
-	s.db.CompactRange(gorocksdb.Range{})
+	s.db.CompactRange(grocksdb.Range{})
 	return nil
 }
 

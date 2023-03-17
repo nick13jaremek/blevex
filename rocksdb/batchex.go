@@ -265,7 +265,7 @@ func (b *BatchEx) execute(w *Writer) error {
 	return nil
 }
 
-// Originally from github.com/tecbot/gorocksdb/util.go.
+// Originally from github.com/linxGnu/grocksdb/util.go.
 func unsafeToByteSlice(data unsafe.Pointer, len int) []byte {
 	var value []byte
 

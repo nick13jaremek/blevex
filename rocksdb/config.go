@@ -1,9 +1,9 @@
 package rocksdb
 
-import "github.com/tecbot/gorocksdb"
+import "github.com/nick13jaremek/grocksdb"
 
-func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
-	*gorocksdb.Options, error) {
+func applyConfig(o *grocksdb.Options, config map[string]interface{}) (
+	*grocksdb.Options, error) {
 
 	cim, ok := config["create_if_missing"].(bool)
 	if ok {
@@ -22,7 +22,7 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 
 	ill, ok := config["info_log_level"].(float64)
 	if ok {
-		o.SetInfoLogLevel(gorocksdb.InfoLogLevel(int(ill)))
+		o.SetInfoLogLevel(grocksdb.InfoLogLevel(int(ill)))
 	}
 
 	tt, ok := config["total_threads"].(float64)
@@ -47,7 +47,7 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 
 	wbs, ok := config["write_buffer_size"].(float64)
 	if ok {
-		o.SetWriteBufferSize(int(wbs))
+		o.SetWriteBufferSize(uint64(wbs))
 	}
 
 	mwbn, ok := config["max_write_buffer_number"].(float64)
@@ -67,7 +67,7 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 
 	c, ok := config["compression"].(float64)
 	if ok {
-		o.SetCompression(gorocksdb.CompressionType(int(c)))
+		o.SetCompression(grocksdb.CompressionType(int(c)))
 	}
 
 	mltc, ok := config["min_level_to_compress"].(float64)
@@ -93,11 +93,6 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 	lstopwt, ok := config["level0_stop_writes_trigger"].(float64)
 	if ok {
 		o.SetLevel0StopWritesTrigger(int(lstopwt))
-	}
-
-	mmcl, ok := config["max_mem_compaction_level"].(float64)
-	if ok {
-		o.SetMaxMemCompactionLevel(int(mmcl))
 	}
 
 	tfsb, ok := config["target_file_size_base"].(float64)
@@ -142,28 +137,30 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 
 	mlfs, ok := config["max_log_file_size"].(float64)
 	if ok {
-		o.SetMaxLogFileSize(int(mlfs))
+		o.SetMaxLogFileSize(uint64(mlfs))
 	}
 
 	lfttr, ok := config["log_file_time_to_roll"].(float64)
 	if ok {
-		o.SetLogFileTimeToRoll(int(lfttr))
+		o.SetLogFileTimeToRoll(uint64(lfttr))
 	}
 
 	klfn, ok := config["keep_log_file_num"].(float64)
 	if ok {
-		o.SetKeepLogFileNum(int(klfn))
+		o.SetKeepLogFileNum(uint(klfn))
 	}
 
-	hrl, ok := config["hard_rate_limit"].(float64)
-	if ok {
-		o.SetHardRateLimit(hrl)
-	}
+	// NOTE: this option no longer appears in grocksdb, probably deprecated in RocksDB v7
+	// hrl, ok := config["hard_rate_limit"].(float64)
+	// if ok {
+	// 	o.SetHardRateLimit(hrl)
+	// }
 
-	rldmm, ok := config["rate_limit_delay_max_millisecond"].(float64)
-	if ok {
-		o.SetRateLimitDelayMaxMilliseconds(uint(rldmm))
-	}
+	// NOTE: this option no longer appears in grocksdb, probably deprecated in RocksDB v7
+	// rldmm, ok := config["rate_limit_delay_max_millisecond"].(float64)
+	// if ok {
+	// 	o.SetRateLimitDelayMaxMilliseconds(uint(rldmm))
+	// }
 
 	mmfs, ok := config["max_manifest_file_size"].(float64)
 	if ok {
@@ -175,14 +172,15 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 		o.SetTableCacheNumshardbits(int(tcnsb))
 	}
 
-	tcrscl, ok := config["table_cache_remove_scan_count_limit"].(float64)
-	if ok {
-		o.SetTableCacheRemoveScanCountLimit(int(tcrscl))
-	}
+	// NOTE: this option no longer appears in grocksdb, probably deprecated in RocksDB v7
+	// tcrscl, ok := config["table_cache_remove_scan_count_limit"].(float64)
+	// if ok {
+	// 	o.SetTableCacheRemoveScanCountLimit(int(tcrscl))
+	// }
 
 	abs, ok := config["arena_block_size"].(float64)
 	if ok {
-		o.SetArenaBlockSize(int(abs))
+		o.SetArenaBlockSize(uint64(abs))
 	}
 
 	dac, ok := config["disable_auto_compactions"].(bool)
@@ -202,13 +200,14 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 
 	mps, ok := config["manifest_preallocation_size"].(float64)
 	if ok {
-		o.SetManifestPreallocationSize(int(mps))
+		o.SetManifestPreallocationSize(uint64(mps))
 	}
 
-	prkwf, ok := config["purge_redundant_kvs_while_flush"].(bool)
-	if ok {
-		o.SetPurgeRedundantKvsWhileFlush(prkwf)
-	}
+	// NOTE: this option no longer appears in grocksdb, probably deprecated in RocksDB v7
+	// prkwf, ok := config["purge_redundant_kvs_while_flush"].(bool)
+	// if ok {
+	// 	o.SetPurgeRedundantKvsWhileFlush(prkwf)
+	// }
 
 	amr, ok := config["allow_mmap_reads"].(bool)
 	if ok {
@@ -220,10 +219,11 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 		o.SetAllowMmapWrites(amw)
 	}
 
-	sleor, ok := config["skip_log_error_on_recovery"].(bool)
-	if ok {
-		o.SetSkipLogErrorOnRecovery(sleor)
-	}
+	// NOTE: this option no longer appears in grocksdb, probably deprecated in RocksDB v7
+	// sleor, ok := config["skip_log_error_on_recovery"].(bool)
+	// if ok {
+	// 	o.SetSkipLogErrorOnRecovery(sleor)
+	// }
 
 	sdps, ok := config["stats_dump_period_sec"].(float64)
 	if ok {
@@ -237,7 +237,7 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 
 	ahocs, ok := config["access_hint_on_compaction_start"].(float64)
 	if ok {
-		o.SetAccessHintOnCompactionStart(gorocksdb.CompactionAccessPattern(uint(ahocs)))
+		o.SetAccessHintOnCompactionStart(grocksdb.CompactionAccessPattern(uint(ahocs)))
 	}
 
 	uam, ok := config["use_adaptive_mutex"].(bool)
@@ -252,7 +252,7 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 
 	cs, ok := config["compaction_style"].(float64)
 	if ok {
-		o.SetCompactionStyle(gorocksdb.CompactionStyle(uint(cs)))
+		o.SetCompactionStyle(grocksdb.CompactionStyle(uint(cs)))
 	}
 
 	mssii, ok := config["max_sequential_skip_in_iterations"].(float64)
@@ -267,7 +267,7 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 
 	iunl, ok := config["inplace_update_num_locks"].(float64)
 	if ok {
-		o.SetInplaceUpdateNumLocks(int(iunl))
+		o.SetInplaceUpdateNumLocks(uint(iunl))
 	}
 
 	es, ok := config["enable_statistics"].(bool)
@@ -281,17 +281,17 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 	}
 
 	// options in the block based table options object
-	bbto := gorocksdb.NewDefaultBlockBasedTableOptions()
+	bbto := grocksdb.NewDefaultBlockBasedTableOptions()
 
 	lcc, ok := config["lru_cache_capacity"].(float64)
 	if ok {
-		c := gorocksdb.NewLRUCache(uint64(lcc))
+		c := grocksdb.NewLRUCache(uint64(lcc))
 		bbto.SetBlockCache(c)
 	}
 
 	bfbpk, ok := config["bloom_filter_bits_per_key"].(float64)
 	if ok {
-		bf := gorocksdb.NewBloomFilter(int(bfbpk))
+		bf := grocksdb.NewBloomFilter(float64(bfbpk))
 		bbto.SetFilterPolicy(bf)
 	}
 
@@ -301,8 +301,8 @@ func applyConfig(o *gorocksdb.Options, config map[string]interface{}) (
 	return o, nil
 }
 
-func (s *Store) newWriteOptions() *gorocksdb.WriteOptions {
-	wo := gorocksdb.NewDefaultWriteOptions()
+func (s *Store) newWriteOptions() *grocksdb.WriteOptions {
+	wo := grocksdb.NewDefaultWriteOptions()
 
 	if s.woptSyncUse {
 		wo.SetSync(s.woptSync)
@@ -317,8 +317,8 @@ func (s *Store) newWriteOptions() *gorocksdb.WriteOptions {
 	return wo
 }
 
-func (s *Store) newReadOptions() *gorocksdb.ReadOptions {
-	ro := gorocksdb.NewDefaultReadOptions()
+func (s *Store) newReadOptions() *grocksdb.ReadOptions {
+	ro := grocksdb.NewDefaultReadOptions()
 
 	if s.roptVerifyChecksumsUse {
 		ro.SetVerifyChecksums(s.roptVerifyChecksums)
@@ -327,7 +327,7 @@ func (s *Store) newReadOptions() *gorocksdb.ReadOptions {
 		ro.SetFillCache(s.roptFillCache)
 	}
 	if s.roptReadTierUse {
-		ro.SetReadTier(gorocksdb.ReadTier(s.roptReadTier))
+		ro.SetReadTier(grocksdb.ReadTier(s.roptReadTier))
 	}
 
 	return ro

@@ -13,17 +13,17 @@ import (
 	"fmt"
 
 	store "github.com/blevesearch/upsidedown_store_api"
-	"github.com/tecbot/gorocksdb"
+	"github.com/nick13jaremek/grocksdb"
 )
 
 type Writer struct {
 	store   *Store
-	options *gorocksdb.WriteOptions
+	options *grocksdb.WriteOptions
 }
 
 func (w *Writer) NewBatch() store.KVBatch {
 	rv := Batch{
-		batch: gorocksdb.NewWriteBatch(),
+		batch: grocksdb.NewWriteBatch(),
 	}
 	return &rv
 }

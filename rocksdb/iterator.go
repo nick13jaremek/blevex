@@ -12,12 +12,12 @@ package rocksdb
 import (
 	"bytes"
 
-	"github.com/tecbot/gorocksdb"
+	"github.com/nick13jaremek/grocksdb"
 )
 
 type Iterator struct {
 	store    *Store
-	iterator *gorocksdb.Iterator
+	iterator *grocksdb.Iterator
 
 	prefix []byte
 	start  []byte

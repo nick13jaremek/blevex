@@ -9,12 +9,10 @@
 
 package rocksdb
 
-import (
-	"github.com/tecbot/gorocksdb"
-)
+import "github.com/nick13jaremek/grocksdb"
 
 type Batch struct {
-	batch *gorocksdb.WriteBatch
+	batch *grocksdb.WriteBatch
 }
 
 func (b *Batch) Set(key, val []byte) {

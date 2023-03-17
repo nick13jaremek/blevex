@@ -11,13 +11,13 @@ package rocksdb
 
 import (
 	store "github.com/blevesearch/upsidedown_store_api"
-	"github.com/tecbot/gorocksdb"
+	"github.com/nick13jaremek/grocksdb"
 )
 
 type Reader struct {
 	store    *Store
-	snapshot *gorocksdb.Snapshot
-	options  *gorocksdb.ReadOptions
+	snapshot *grocksdb.Snapshot
+	options  *grocksdb.ReadOptions
 }
 
 func (r *Reader) Get(key []byte) ([]byte, error) {
