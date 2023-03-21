@@ -3,9 +3,9 @@ module github.com/nick13jaremek/blevex/v2
 go 1.18
 
 require (
-	github.com/blevesearch/bleve/v2 v2.3.6
+	github.com/blevesearch/bleve/v2 v2.3.3
 	github.com/blevesearch/bleve_index_api v1.0.5
-	github.com/blevesearch/blevex/v2 v2.1.2
+	github.com/blevesearch/blevex/v2 v2.0.0
 	github.com/blevesearch/upsidedown_store_api v1.0.1
 	github.com/cznic/b v0.0.0-20181122101859-a26611c4d92d
 	github.com/golang/protobuf v1.3.2
