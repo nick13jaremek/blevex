@@ -3,7 +3,7 @@ module github.com/nick13jaremek/blevex/v2
 go 1.18
 
 require (
-	github.com/blevesearch/bleve/v2 v2.3.3
+	github.com/blevesearch/bleve/v2 v2.3.4
 	github.com/blevesearch/bleve_index_api v1.0.5
 	github.com/blevesearch/blevex/v2 v2.0.0
 	github.com/blevesearch/upsidedown_store_api v1.0.1
