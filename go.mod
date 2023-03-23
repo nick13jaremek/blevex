@@ -11,7 +11,7 @@ require (
 	github.com/golang/protobuf v1.3.2
 	github.com/ikawaha/kagome.ipadic v1.1.2
 	github.com/jmhodges/levigo v1.0.0
-	github.com/nick13jaremek/grocksdb v1.7.17-beta
+	github.com/nick13jaremek/grocksdb v1.7.21-beta
 	github.com/tebeka/snowball v0.4.2
 )
 
@@ -39,6 +39,6 @@ require (
 	github.com/json-iterator/go v0.0.0-20171115153421-f7279a603ede // indirect
 	github.com/mschoch/smat v0.2.0 // indirect
 	go.etcd.io/bbolt v1.3.5 // indirect
-	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a // indirect
+	golang.org/x/sys v0.6.0 // indirect
 	golang.org/x/text v0.3.7 // indirect
 )
